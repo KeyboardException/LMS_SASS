@@ -11,6 +11,10 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+#if DEBUG
+builder.Services.AddSassCompiler();
+#endif
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}");
 
 app.Run();
