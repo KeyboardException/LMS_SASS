@@ -10,4 +10,10 @@ public class LoginController : Controller {
     public IActionResult LoginPage() {
         return View("Index");
     }
+
+	[HttpPost]
+	[Route("/login")]
+	public IActionResult PerformLogin(LoginFormCredentialModel data) {
+		return RedirectToAction("Index", "Home");
+	}
 }
