@@ -10,6 +10,7 @@ body {
 .btn {
 	display: inline-flex;
 	align-items: center;
+	gap: 0.5rem;
 
 	height: 2.5rem;
 	padding: 0.5rem 1.5rem;
@@ -71,7 +72,8 @@ body {
 	}
 }
 
-.form-control {
+.form-control,
+.form-select {
 	padding: 0.8rem 1rem;
 	border-radius: 1rem;
 }
@@ -119,5 +121,112 @@ body {
 	> .dropdown-menu {
 		left: unset;
 		right: 0;
+	}
+}
+
+.page-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	margin-top: 3rem;
+
+	> .actions {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+	}
+}
+
+.page-content {
+	margin-top: 2rem;
+}
+
+.course-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+}
+
+.course-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	padding: 0.5rem;
+
+	text-decoration: none;
+	color: #1d1d1e;
+
+	border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+	border-radius: 1rem;
+
+	> .card-img {
+		height: 8rem;
+		background-color: #4499dc;
+		border-radius: 0.5rem;
+	}
+
+	> .card-body {
+		display: flex;
+		flex-direction: column;
+		padding: 0.5rem;
+		
+		> .name {
+			margin-bottom: 0.2rem;
+
+			font-size: 1.375rem;
+			font-weight: 500;
+			line-height: 1.75rem;
+		}
+
+		> .code {
+			font-size: 0.8125rem;
+		}
+	}
+
+	&:hover {
+		> .card-img {
+			background-color: #3076AD;
+		}
+
+		> .card-body > .name {
+			text-decoration: underline;
+		}
+	}
+}
+
+.course-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	min-height: 16rem;
+	margin-top: 2rem;
+	padding: 2rem;
+
+	color: white;
+	background-color: #4499dc;
+	border-radius: 1rem;
+
+	> .actions {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		justify-content: flex-end;
+	}
+
+	> .info {
+		> .name {
+			font-size: 2.25rem;
+			font-weight: 500;
+			line-height: 2.75rem;
+		}
+
+		> .code {
+			font-size: 1.375rem;
+			font-weight: 400;
+			line-height: 1.75rem;
+		}
 	}
 }

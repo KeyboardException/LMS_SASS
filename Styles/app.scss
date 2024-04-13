@@ -93,6 +93,10 @@
 
 			flex-grow: 1;
 			overflow: auto;
+
+			> .container {
+				--bs-gutter-x: 4rem;
+			}
 		}
 	}
 }

@@ -10,7 +10,7 @@ public class HomeController(DatabaseContext DB) : BaseController(DB) {
     [HttpGet]
     [Route("/")]
     public IActionResult Index() {
-        return View();
+        return View(DB.Courses.ToList());
     }
 
     [HttpGet]

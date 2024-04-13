@@ -58,9 +58,9 @@
                     </a>
 
                     <a asp-action="SelfEnrollCourseView" asp-controller="Course" asp-active-route class="menu-item">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            <span>Tham Gia Khóa Học</span>
-                        </a>
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Tham Gia Khóa Học</span>
+                    </a>
 
                     @if (user.Role == UserModel.ROLE_TEACHER || user.Role == UserModel.ROLE_ADMIN) {
                         <div role="separator"></div>

@@ -1,5 +1,8 @@
 using LMS_SASS.Databases;
+using LMS_SASS.Interfaces;
+using LMS_SASS.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DatabaseContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<ISessionService, SessionService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

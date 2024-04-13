@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using LMS_SASS.Databases;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMS_SASS.Models;
