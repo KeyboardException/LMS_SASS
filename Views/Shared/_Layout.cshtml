@@ -57,7 +57,33 @@
                         <span>Lịch</span>
                     </a>
 
-                    <div role="separator"></div>
+                    <a asp-action="SelfEnrollCourseView" asp-controller="Course" asp-active-route class="menu-item">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            <span>Tham Gia Khóa Học</span>
+                        </a>
+
+                    @if (user.Role == UserModel.ROLE_TEACHER || user.Role == UserModel.ROLE_ADMIN) {
+                        <div role="separator"></div>
+
+                        <a asp-action="CreateCourseView" asp-controller="Course" asp-active-route class="menu-item">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Tạo Khóa Học</span>
+                        </a>
+                    }
+
+                    @if (user.Role == UserModel.ROLE_ADMIN) {
+                        <div role="separator"></div>
+
+                        <a asp-action="Accounts" asp-controller="Admin" asp-active-route class="menu-item">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span>Quản Lý Tài Khoản</span>
+                        </a>
+
+                        <a asp-action="Courses" asp-controller="Admin" asp-active-route class="menu-item">
+                            <i class="fa-solid fa-chalkboard"></i>
+                            <span>Quản Lý Khóa Học</span>
+                        </a>
+                    }
                 </span>
 
                 <span class="content">

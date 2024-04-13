@@ -67,6 +67,6 @@ public class LoginController(DatabaseContext DB) : Controller {
 	[Route("/login/logout")]
 	public IActionResult Logout() {
 		HttpContext.Session.Clear();
-		return View("Index");
+		return RedirectToAction("LoginPage");
 	}
 }
