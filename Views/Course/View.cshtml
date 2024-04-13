@@ -16,9 +16,16 @@
             }
 		</div>
 
-		<div class="info">
-			<h2 class="name">@Model.Name</h2>
-			<div class="code">@Model.Code</div>
+		<div class="details">
+			<div class="info">
+				<h2 class="name">@Model.Name</h2>
+				<div class="code">@Model.Code</div>
+			</div>
+
+			<div class="invite-code">
+				<label>@Html.DisplayNameFor(model => model.InviteCode)</label>
+				<div>@Model.InviteCode</div>
+			</div>
 		</div>
 	</div>
 
