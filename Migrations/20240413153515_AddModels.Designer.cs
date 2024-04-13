@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS_SASS.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240413151601_AddModels")]
+    [Migration("20240413153515_AddModels")]
     partial class AddModels
     {
         /// <inheritdoc />
@@ -127,6 +127,10 @@ namespace LMS_SASS.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("InviteCode")
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Name")
                         .IsRequired()
