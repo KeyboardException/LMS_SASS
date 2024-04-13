@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS_SASS.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240413153515_AddModels")]
+    [Migration("20240413154141_AddModels")]
     partial class AddModels
     {
         /// <inheritdoc />
