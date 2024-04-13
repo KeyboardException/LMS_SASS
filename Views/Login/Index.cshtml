@@ -13,8 +13,8 @@
 		</span>
 		
 		<div class="form-floating">
-			<input type="text" asp-for="Username" name="Username" id="form-input-username" class="form-control" placeholder="Username" required>
-			<label for="form-input-username">Username</label>
+			<input type="text" asp-for="Username" name="Username" id="form-input-username" class="form-control" placeholder="@Html.DisplayNameFor(model => model.Username)" required>
+			<label for="form-input-username">@Html.DisplayNameFor(model => model.Username)</label>
 		</div>
 		
 		<span asp-validation-for="Username"></span>
@@ -26,8 +26,8 @@
 		</span>
 
 		<div class="form-floating">
-			<input type="password" asp-for="Password" name="password" id="form-input-password" class="form-control" placeholder="Password" required>
-			<label for="form-input-password">Password</label>
+			<input type="password" asp-for="Password" name="password" id="form-input-password" class="form-control" placeholder="@Html.DisplayNameFor(model => model.Password)" required>
+			<label for="form-input-password">@Html.DisplayNameFor(model => model.Password)</label>
 		</div>
 
 		<span asp-validation-for="Password"></span>
@@ -36,7 +36,7 @@
 	<a class="btn btn-link btn-link-mini">Bạn quên mật khẩu?</a>
 
 	<div class="form-actions mt-5">
-		<a class="btn btn-link">Tạo tài khoản</a>
+		<a asp-action="RegisterPage" asp-controller="Login" class="btn btn-link">Tạo tài khoản</a>
 		<button type="submit" class="btn btn-primary">Đăng nhập</button>
 	</div>
 </form>

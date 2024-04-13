@@ -1,10 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LMS_SASS.Models;
+using LMS_SASS.Databases;
 
 namespace LMS_SASS.Controllers;
 
-public class HomeController() : Controller {
+public class HomeController(DatabaseContext DB) : BaseController(DB) {
 
     [HttpGet]
     [Route("/")]

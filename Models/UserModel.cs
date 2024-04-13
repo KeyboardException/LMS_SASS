@@ -8,40 +8,51 @@ namespace LMS_SASS.Models;
 [PrimaryKey(nameof(Id))]
 [Index(nameof(Username), IsUnique = true)]
 public class UserModel {
-	[Key]
-	public required int Id { get; set; }
+	public const string ROLE_USER = "user";
 
+	public const string ROLE_ADMIN = "admin";
+
+	[Key]
+	public int Id { get; set; }
+
+	[Display(Name = "Tên tài khoản")]
 	[DataType(DataType.Text)]
 	[MaxLength(32)]
 	public required string Username { get; set; }
 
+	[Display(Name = "Họ tên")]
 	[DataType(DataType.Text)]
 	[MaxLength(32)]
 	public required string Name { get; set; }
 
+	[Display(Name = "Mật khẩu")]
 	[DataType(DataType.Password)]
 	[MaxLength(128)]
 	public required string Password { get; set; }
 
+	[Display(Name = "Ngày sinh")]
 	[DataType(DataType.DateTime)]
 	public required DateTime DOB { get; set; }
 
+	[Display(Name = "Số điện thoại")]
 	[DataType(DataType.PhoneNumber)]
 	[MaxLength(14)]
 	public required string Phone { get; set; }
 
+	[Display(Name = "Email")]
 	[DataType(DataType.EmailAddress)]
 	[MaxLength(32)]
 	public required string Email { get; set; }
 
+	[Display(Name = "Địa chỉ")]
 	[DataType(DataType.Text)]
 	[MaxLength(128)]
 	public required string Address { get; set; }
 
 	[DataType(DataType.Text)]
 	[MaxLength(8)]
-	public required string Role { get; set; }
+	public required string Role { get; set; } = ROLE_USER;
 
 	[DataType(DataType.DateTime)]
-	public required DateTime Created { get; set; }
+	public DateTime Created { get; set; }
 }
