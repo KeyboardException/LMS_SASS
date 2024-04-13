@@ -10,6 +10,7 @@ public class DatabaseContext : DbContext {
 	public DbSet<CourseModel> Courses { get; set; }
 
 	public DbSet<CourseUserModel> CourseUsers { get; set; }
+	public DbSet<AssignmentModel> Assignment { get; set; }
 
 	public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {}
 
