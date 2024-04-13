@@ -4,9 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_SASS.Models
 {
+
+  [Table("AssignmentSubmission")]
+  [PrimaryKey(nameof(Id))]
   public class AssignmentSubmissionsModel
   {
     [Key]

@@ -4,6 +4,7 @@ using LMS_SASS.Databases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS_SASS.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240413125429_AddQuizQuestionsModel")]
+    partial class AddQuizQuestionsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace LMS_SASS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LMS_SASS.Models.ActivityModel", b =>
+            modelBuilder.Entity("LMS_SASS.Models.ActivitiesModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +109,7 @@ namespace LMS_SASS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AssignmentSubmission");
+                    b.ToTable("AssignmentSubmissions");
                 });
 
             modelBuilder.Entity("LMS_SASS.Models.CourseModel", b =>
@@ -124,10 +127,6 @@ namespace LMS_SASS.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("InviteCode")
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -195,67 +194,6 @@ namespace LMS_SASS.Migrations
                     b.ToTable("Meeting");
                 });
 
-            modelBuilder.Entity("LMS_SASS.Models.QuizAttemptDetailModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Answered")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuizAttemptId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("QuizAttemptId");
-
-                    b.ToTable("QuizAttemptDetails");
-                });
-
-            modelBuilder.Entity("LMS_SASS.Models.QuizAttemptModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Correct")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuizId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Result")
-                        .HasColumnType("float");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Wrong")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuizId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("QuizAttempts");
-                });
-
             modelBuilder.Entity("LMS_SASS.Models.QuizModel", b =>
                 {
                     b.Property<int>("Id")
@@ -272,7 +210,7 @@ namespace LMS_SASS.Migrations
                     b.ToTable("Quiz");
                 });
 
-            modelBuilder.Entity("LMS_SASS.Models.QuizQuestionModel", b =>
+            modelBuilder.Entity("LMS_SASS.Models.QuizQuestionsModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -370,7 +308,7 @@ namespace LMS_SASS.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("LMS_SASS.Models.ActivityModel", b =>
+            modelBuilder.Entity("LMS_SASS.Models.ActivitiesModel", b =>
                 {
                     b.HasOne("LMS_SASS.Models.CourseModel", "Course")
                         .WithMany()
@@ -419,45 +357,7 @@ namespace LMS_SASS.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LMS_SASS.Models.QuizAttemptDetailModel", b =>
-                {
-                    b.HasOne("LMS_SASS.Models.QuizQuestionModel", "QuizQuestion")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LMS_SASS.Models.QuizAttemptModel", "QuizAttempt")
-                        .WithMany()
-                        .HasForeignKey("QuizAttemptId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("QuizAttempt");
-
-                    b.Navigation("QuizQuestion");
-                });
-
-            modelBuilder.Entity("LMS_SASS.Models.QuizAttemptModel", b =>
-                {
-                    b.HasOne("LMS_SASS.Models.QuizModel", "Quiz")
-                        .WithMany()
-                        .HasForeignKey("QuizId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LMS_SASS.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Quiz");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("LMS_SASS.Models.QuizQuestionModel", b =>
+            modelBuilder.Entity("LMS_SASS.Models.QuizQuestionsModel", b =>
                 {
                     b.HasOne("LMS_SASS.Models.QuizModel", "Quiz")
                         .WithMany()

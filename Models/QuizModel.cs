@@ -2,21 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_SASS.Models
 {
-
-    [Table("Assignment")]
+    [Table("Quiz")]
     [PrimaryKey(nameof(Id))]
-    public class AssignmentModel
+    public class QuizModel
     {
       [Key]
       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public required int Id { get; set; }           // Primary key
-        public required string Description { get; set; }
-        public required double PassingGrade { get; set; }
+      public required int Id { get; set; }
+
+      [Range(0.01, double.MaxValue, ErrorMessage = "Passing grade must be greater than 0")]
+      public required double PassingGrade { get; set; }
+
     }
 }
