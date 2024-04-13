@@ -4,7 +4,10 @@ using LMS_SASS.Databases;
 
 namespace LMS_SASS.Controllers;
 
-public class BaseController(DatabaseContext DB) : Controller {
+public class BaseController(DatabaseContext databaseContext) : Controller {
+
+	protected DatabaseContext DB = databaseContext;
+
 	public override void OnActionExecuting(ActionExecutingContext context) {
 		// Assuming you've already set the username in your session upon login
 		var userId = HttpContext.Session.GetInt32("UserId");

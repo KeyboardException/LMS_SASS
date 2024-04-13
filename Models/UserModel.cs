@@ -8,7 +8,10 @@ namespace LMS_SASS.Models;
 [PrimaryKey(nameof(Id))]
 [Index(nameof(Username), IsUnique = true)]
 public class UserModel {
+
 	public const string ROLE_USER = "user";
+
+	public const string ROLE_TEACHER = "teacher";
 
 	public const string ROLE_ADMIN = "admin";
 

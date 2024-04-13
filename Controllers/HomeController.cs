@@ -14,6 +14,12 @@ public class HomeController(DatabaseContext DB) : BaseController(DB) {
     }
 
     [HttpGet]
+    [Route("/calendar")]
+    public IActionResult Calendar() {
+        return View();
+    }
+
+    [HttpGet]
     [Route("/sandbox")]
     public IActionResult Sandbox() {
         return View();

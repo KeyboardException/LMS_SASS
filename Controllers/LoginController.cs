@@ -62,4 +62,11 @@ public class LoginController(DatabaseContext DB) : Controller {
 		HttpContext.Session.SetInt32("UserId", user.Id);
 		return RedirectToAction("Index", "Home");
 	}
+
+	[HttpGet]
+	[Route("/login/logout")]
+	public IActionResult Logout() {
+		HttpContext.Session.Clear();
+		return View("Index");
+	}
 }
