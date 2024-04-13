@@ -1,0 +1,104 @@
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: "Google Sans", sans-serif;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+
+	height: 2.5rem;
+	padding: 0.5rem 1.5rem;
+
+	font-size: 0.875rem;
+	font-weight: 500;
+	letter-spacing: 0rem;
+    line-height: 1.42857143;
+
+	border-radius: 1.25rem;
+
+	transition:
+		color .28s cubic-bezier(.4,0,.2,1),
+		background-color .28s cubic-bezier(.4,0,.2,1),
+		border-color .28s cubic-bezier(.4,0,.2,1),
+		shadow .28s cubic-bezier(.4,0,.2,1);
+
+	&:not(.btn-link):hover {
+		box-shadow:
+			0 1px 2px 0 rgba(60,64,67,.3),
+			0 1px 3px 1px rgba(60,64,67,.15);
+	}
+
+	&.btn-link {
+		position: relative;
+		text-decoration: none;
+		outline: none;
+		box-shadow: none;
+
+		&.btn-link-mini {
+			height: auto;
+			padding: 0.2rem 0.5rem;
+			margin-left: -0.5rem;
+			margin-right: -0.5rem;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			display: block;
+
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 1.25rem;
+
+			background-color: var(--bs-blue);
+			opacity: 0;
+		}
+
+		&:hover::after {
+			opacity: 0.05;
+		}
+
+		&:active::after {
+			opacity: 0.15;
+		}
+	}
+}
+
+.form-control {
+	padding: 0.8rem 1rem;
+	border-radius: 1rem;
+}
+
+.input-group-text {
+	padding: 0.8rem 1rem;
+	border-radius: 1rem;
+}
+
+.field-validation-error {
+	width: 100%;
+	margin-left: 0;
+    font-size: .875em;
+    color: var(--bs-form-invalid-color);
+
+	&:not(:empty) {
+		margin-top: .25rem;
+	}
+}
+
+.field-validation-valid {
+	width: 100%;
+	margin-left: 0;
+    font-size: .875em;
+    color: var(--bs-form-valid-color);
+
+	&:not(:empty) {
+		margin-top: .25rem;
+	}
+}

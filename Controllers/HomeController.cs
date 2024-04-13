@@ -1,31 +1,26 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LMS_SASS.Models;
+using LMS_SASS.Databases;
 
 namespace LMS_SASS.Controllers;
 
-public class HomeController : Controller
-{
-    private readonly ILogger<HomeController> _logger;
+public class HomeController(DatabaseContext DB) : BaseController(DB) {
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
+    [HttpGet]
+    [Route("/")]
+    public IActionResult Index() {
         return View();
     }
 
-    public IActionResult Privacy()
-    {
+    [HttpGet]
+    [Route("/sandbox")]
+    public IActionResult Sandbox() {
         return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
+    public IActionResult Error() {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
