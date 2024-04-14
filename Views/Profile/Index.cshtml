@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    UserModel userModel = ViewBag.User;
+}
+@model LMS_SASS.Models.UserModel
+
+    <h1>User Details</h1>
+    <p>Username: @Model.Username</p>
+    <p>Name: @Model.Name</p>
+    <p>Date of Birth: @Model.DOB</p>
+    <p>Phone: @Model.Phone</p>
+    <p>Email: @Model.Email</p>
+    <p>Address: @Model.Address</p>
+    <p>Role: @Model.Role</p>
+    <p>Created: @Model.Created</p>
+
+
