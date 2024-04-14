@@ -1,0 +1,40 @@
+@model IEnumerable<Bai1CourseUserModel>
+
+<div class="container">
+    <div class="mt-3">
+		<form class="row g-3" style="align-items: center;" method="get" asp-controller="Bai1" asp-action="Index">
+			<div class="col-auto">
+				<label>Tìm Kiếm</label>
+			</div>
+
+			<div class="col-auto">
+				<label for="search-input" class="visually-hidden">Tìm Kiếm</label>
+				<input type="text" name="search" class="form-control" id="search-input" value="@ViewBag.Search" placeholder="Tìm Kiếm">
+			</div>
+
+			<div class="col-auto">
+				<button type="submit" class="btn btn-primary mb-3">Tìm</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="page-content">
+		<table>
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>User</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach (var item in Model) {
+					<tr>
+						<td>@item.CourseName</td>
+						<td>@item.Username</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

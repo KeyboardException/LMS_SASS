@@ -1,0 +1,45 @@
+@model IEnumerable<Bai2UserDisableModel>
+
+<div class="container">
+	<div class="page-content">
+		<table>
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Name</th>
+					<th>Action</th>
+					<th>LogTime</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach (var item in Model) {
+					<tr>
+						<td>@item.User.Username</td>
+						<td>@item.User.Name</td>
+						<td>
+							<label>Disabled</label>
+							<input type="checkbox" class="form-check-input" id="user-disable-@item.User.Id" checked="@item.Disable.Disabled" oninput="updateDisableState(@item.User.Id)">
+						</td>
+						<td>@item.Disable.LogTime</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	async function updateDisableState(userId) {
+		const input = document.getElementById(`user-disable-${userId}`);
+
+		fetch(`/bai2/${userId}/${input.checked}`, {
+			method: "POST"
+		})
+			.then((response) => response.json())
+			.then((response) => {
+				alert(response.message);
+				location.reload();
+			});
+	}
+</script>

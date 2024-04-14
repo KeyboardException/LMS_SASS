@@ -18,6 +18,8 @@ public class DatabaseContext : DbContext {
 	public DbSet<QuizQuestionModel> QuizQuestions { get; set; }
 	public DbSet<QuizAttemptModel> QuizAttempts { get; set; }
 	public DbSet<QuizAttemptDetailModel> QuizAttemptDetails { get; set; }
+	
+	public DbSet<DisableModel> DisableModels { get; set; }
 
 	public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {}
 
