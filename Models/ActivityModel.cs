@@ -13,6 +13,9 @@ namespace LMS_SASS.Models
     [PrimaryKey(nameof(Id))]
     public class ActivityModel
     {
+    	public const string TYPE_QUIZ = "quiz";
+      public const string  TYPE_ASSIGNMENT = "assignment";
+      public const string   TYPE_MEETING = "meeting";
       [Key]
       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
       public required int Id { get; set; } 
@@ -23,7 +26,7 @@ namespace LMS_SASS.Models
 
       public required string Name { get; set; }
 
-      public required string Type { get; set; } // Assuming Type can be either "quiz", "assignment", or "meeting"
+      public required string Type { get; set; }=TYPE_MEETING; // Assuming Type can be either "quiz", "assignment", or "meeting"
 
       public required int InstanceId { get; set; }
 
