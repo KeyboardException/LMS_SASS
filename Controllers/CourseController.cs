@@ -81,6 +81,24 @@ public class CourseController(DatabaseContext databaseContext) : BaseController(
     }
 
     [HttpGet]
+    [Route("/course/{Id:int}/peoples")]
+    public IActionResult Peoples(int Id) {
+        var course = DB.Courses.Find(Id);
+
+        if (course == null)
+            return NotFound();
+
+        var data = new CoursePeoplesModel {
+            Course = course,
+            CourseUsers = DB.CourseUsers
+                .Where((cu) => cu.CourseId == course.Id)
+                .ToList()
+        };
+
+        return View("Peoples", data);
+    }
+
+    [HttpGet]
     [Route("/course/selfEnroll")]
     public IActionResult SelfEnrollCourseView() {
         return View("SelfEnroll");

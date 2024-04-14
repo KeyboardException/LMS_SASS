@@ -1,0 +1,104 @@
+@model CoursePeoplesModel
+
+@{
+	ViewData["Title"] = "Mọi Người: " + Model.Course.Name;
+	ViewBag.Course = Model.Course;
+}
+
+<div class="container">
+	@{
+		await Html.RenderPartialAsync("Header");
+	}
+
+    <div class="page-content">
+		<div class="course-user-group">
+			<div class="header">
+				<h2>Giáo viên</h2>
+
+				<span class="actions">
+					<a class="btn btn-outline-secondary">
+						<i class="fa-solid fa-user-plus"></i>
+					</a>
+				</span>
+			</div>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Họ Tên</th>
+						<th>Email</th>
+						<th>SĐT</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var item in Model.CourseUsers) {
+						if (item.Role != CourseUserModel.ROLE_TEACHER)
+							continue;
+
+						var imageUrl = Url.Action("Image", "User", new { id = item.User.Id });
+
+						<tr>
+							<td>
+								<span class="user-info">
+									<img src="@imageUrl" class="user-image" />
+									<span class="user-name">@item.User.Name</span>
+								</span>
+							</td>
+
+							<td>@item.User.Email</td>
+							<td>@item.User.Phone</td>
+							<td></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="course-user-group mt-4">
+			<div class="header">
+				<h2>Sinh viên</h2>
+
+				<span class="actions">
+					<a class="btn btn-outline-secondary">
+						<i class="fa-solid fa-user-plus"></i>
+					</a>
+				</span>
+			</div>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Họ Tên</th>
+						<th>Email</th>
+						<th>SĐT</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var item in Model.CourseUsers) {
+						if (item.Role != CourseUserModel.ROLE_TEACHER)
+							continue;
+
+						var imageUrl = Url.Action("Image", "User", new { id = item.User.Id });
+
+						<tr>
+							<td>
+								<span class="user-info">
+									<img src="@imageUrl" class="user-image" />
+									<span class="user-name">@item.User.Name</span>
+								</span>
+							</td>
+
+							<td>@item.User.Email</td>
+							<td>@item.User.Phone</td>
+							<td></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+    </div>
+</div>

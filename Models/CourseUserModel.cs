@@ -7,6 +7,10 @@ namespace LMS_SASS.Models;
 [Table("CourseUsers")]
 [PrimaryKey(nameof(Id))]
 public class CourseUserModel {
+	public const string ROLE_STUDENT = "student";
+
+	public const string ROLE_TEACHER = "teacher";
+
 	[Key]
 	public required int Id { get; set; }
 
@@ -22,5 +26,5 @@ public class CourseUserModel {
 
 	[DataType(DataType.Text)]
 	[MaxLength(8)]
-	public required string Role { get; set; }
+	public required string Role { get; set; } = ROLE_STUDENT;
 }
