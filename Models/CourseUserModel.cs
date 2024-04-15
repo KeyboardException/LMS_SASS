@@ -12,17 +12,17 @@ public class CourseUserModel {
 	public const string ROLE_TEACHER = "teacher";
 
 	[Key]
-	public required int Id { get; set; }
+	public int Id { get; set; }
 
 	[ForeignKey(nameof(User))]
 	public required int UserId { get; set; }
 
-	public required UserModel User { get; set; }
+	public UserModel? User { get; set; }
 
 	[ForeignKey(nameof(Course))]
 	public required int CourseId { get; set; }
 
-	public required CourseModel Course { get; set; }
+	public CourseModel? Course { get; set; }
 
 	[DataType(DataType.Text)]
 	[MaxLength(8)]

@@ -2,6 +2,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LMS_SASS.Models;
 using LMS_SASS.Databases;
+using System.Data;
+using LMS_SASS.Interfaces;
 
 namespace LMS_SASS.Controllers;
 
@@ -96,6 +98,47 @@ public class CourseController(DatabaseContext databaseContext) : BaseController(
         };
 
         return View("Peoples", data);
+    }
+
+    [HttpGet]
+    [Route("/course/{Id:int}/unenrolledUsers")]
+    public IActionResult UnenrolledUsers(int Id) {
+        var course = DB.Courses.Find(Id);
+
+        if (course == null)
+            return NotFound();
+
+        var enrolledUserIds = DB.CourseUsers
+            .Where(cu => cu.CourseId == course.Id)
+            .Select(cu => cu.UserId)
+            .ToList();
+
+        var unenrolledUsers = DB.Users
+            .Where(u => !enrolledUserIds.Contains(u.Id))
+            .ToList();
+
+        return Json(unenrolledUsers);
+    }
+
+    [HttpPost]
+    [Route("/course/{Id:int}/enroll")]
+    public IActionResult EnrollUser(int Id, EnrollUserModel enroll) {
+        var course = DB.Courses.Find(Id);
+        var user = DB.Users.Find(enroll.UserId);
+
+        if (course == null || user == null)
+            return NotFound();
+
+        var item = new CourseUserModel {
+            UserId = user.Id,
+            CourseId = course.Id,
+            Role = enroll.Role
+        };
+
+        DB.CourseUsers.Add(item);
+        DB.SaveChanges();
+
+        return Json(new { Message = "OK" });
     }
 
     [HttpGet]

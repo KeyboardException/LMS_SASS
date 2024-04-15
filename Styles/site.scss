@@ -283,3 +283,16 @@ body {
 		justify-content: space-between;
 	}
 }
+
+.user-info {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+
+	> .user-image {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 2rem;
+	}
+}
