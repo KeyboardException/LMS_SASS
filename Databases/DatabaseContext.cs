@@ -5,7 +5,7 @@ namespace LMS_SASS.Databases;
 
 public class DatabaseContext : DbContext {
 
-	public DbSet<UserModel> Users { get; set; }
+    public DbSet<UserModel> Users { get; set; }
 
 	public DbSet<CourseModel> Courses { get; set; }
 
