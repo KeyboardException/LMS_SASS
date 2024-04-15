@@ -61,7 +61,6 @@ namespace LMS_SASS.Controllers
 
 			if (existingUser == null)
 			{
-				ModelState.AddModelError("Username", "Username này đã tồn tại trong hệ thống!");
 				return View("Edit");
 			}
 			existingUser.Username = userModel.Username;
