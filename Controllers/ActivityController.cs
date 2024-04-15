@@ -8,6 +8,7 @@ using LMS_SASS.Databases;
 using LMS_SASS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NHibernate.Util;
 
 namespace LMS_SASS.Controllers
 {
@@ -56,9 +57,57 @@ namespace LMS_SASS.Controllers
 
         DB.Activities.Add(activity);
         DB.SaveChanges();
-        return RedirectToAction( "ViewCourse","Course", new { Id = model.Activity.CourseId});
+        return RedirectToAction("ViewCourse", "Course", new { Id = model.Activity.CourseId });
       }
-      return RedirectToAction("CreateMeetingView", new {courseId= model.Activity.CourseId});
+      return RedirectToAction("CreateMeetingView", new { courseId = model.Activity.CourseId });
+    }
+    [HttpGet]
+    [Route("/course/{courseId:int}/activity/assignment/create")]
+    public IActionResult CreateAssignmentView(int courseId)
+    {
+      ViewBag.Action = "create";
+      ViewBag.CourseId = courseId;
+      return View("CreateAssignment");
+    }
+    [HttpPost]
+    [Route("/activity/assignment/create")]
+    public IActionResult CreateAssignment(string Name, string Description,
+    double PassingGrade,
+    DateTime StartDate,
+    DateTime EndDate,
+    int CourseId)
+    {
+      if (StartDate >= DateTime.UtcNow && EndDate > StartDate)
+      {
+        AssignmentModel assignment = new AssignmentModel
+        {
+          Id = 0,
+          Description = Description,
+          PassingGrade = PassingGrade,
+        };
+        DB.Assignment.Add(assignment);
+        DB.SaveChanges();
+        int assignmentId = assignment.Id;
+        CourseModel courseData = DB.Courses.First((c) => c.Id == CourseId);
+        ActivityModel activity = new ActivityModel
+        {
+          Id = 0,
+          CourseId = CourseId,
+          Created = DateTime.UtcNow,
+          Course = courseData,
+          Name = Name,
+          Type = ActivityModel.TYPE_ASSIGNMENT,
+          InstanceId = assignmentId,
+          StartDate = StartDate,
+          EndDate = EndDate,
+        };
+
+        DB.Activities.Add(activity);
+        DB.SaveChanges();
+        return Json(new { Message = "OK", Status = "success" });
+      }
+      return Json(new { Message = "Fail", Status = "error" });
+
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
