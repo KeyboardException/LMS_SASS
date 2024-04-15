@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using LMS_SASS.Databases;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +33,8 @@ public class UserModel {
 	[Display(Name = "Mật khẩu")]
 	[DataType(DataType.Password)]
 	[MaxLength(128)]
-	public required string Password { get; set; }
+	[JsonIgnore]
+	public string? Password { get; set; }
 
 	[Display(Name = "Ngày sinh")]
 	[DataType(DataType.DateTime)]

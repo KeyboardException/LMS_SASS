@@ -35,7 +35,7 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
+                            <li><a class="dropdown-item" asp-controller="Profile" asp-action="Index" asp-route-id="@user.Id">Hồ sơ</a></li>
                                 <li><a class="dropdown-item" href="#">Điểm</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" asp-action="Logout" asp-controller="Login">Đăng xuất</a></li>
