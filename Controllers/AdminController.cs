@@ -43,7 +43,18 @@ public class AdminController : BaseController {
             return Ok(new { success = false });
         }
     }
-
+    [HttpGet("/admin/search")]
+    public IActionResult Search(string query)
+    {
+        var users = _context.Users.Where(u =>
+            u.Username.Contains(query) ||
+            u.Name.Contains(query) ||
+            u.Email.Contains(query) ||
+            u.Address.Contains(query) ||
+            u.Role.Contains(query)
+        ).ToList();
+        return PartialView("_UserTablePartial", users);
+    }
     [HttpGet]
     [Route("/admin/courses")]
     public IActionResult Courses() {

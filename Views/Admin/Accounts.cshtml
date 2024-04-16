@@ -9,6 +9,14 @@
         <a href="#" data-toggle="modal" data-target="#modalCreateUpdate" class="btn btn-primary">Thêm mới</a>
     </div>
 </div>
+<div class="row" style="margin-bottom:15px;">
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm...">
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-primary" onclick="searchUsers()">Tìm kiếm</button>
+    </div>
+</div>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -38,3 +46,65 @@
         }
     </tbody>
 </table>
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Chỉnh sửa người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form để chỉnh sửa thông tin người dùng -->
+                <form id="editUserForm">
+                    <div class="form-group">
+                        <label for="editUsername">Tên tài khoản</label>
+                        <input type="text" class="form-control" id="editUsername" name="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Họ tên</label>
+                        <input type="text" class="form-control" id="editName" name="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email</label>
+                        <input type="email" class="form-control" id="editEmail" name="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddress">Địa chỉ</label>
+                        <input type="text" class="form-control" id="editAddress" name="Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editRole">Vai trò</label>
+                        <select class="form-control" id="editRole" name="Role">
+                            <option value="user">Người dùng</option>
+                            <option value="teacher">Giáo viên</option>
+                            <option value="admin">Quản trị viên</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchUsers() {
+        var searchQuery = $('#searchInput').val();
+        $.ajax({
+            url: '/admin/search',
+            type: 'GET',
+            data: { query: searchQuery },
+            success: function (data) {
+                // Cập nhật nội dung của bảng với kết quả tìm kiếm
+                $('#show_data').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                alert("Đã xảy ra lỗi khi tìm kiếm người dùng.");
+            }
+        });
+    }
+</script>
