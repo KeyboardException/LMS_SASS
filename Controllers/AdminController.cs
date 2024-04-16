@@ -2,18 +2,49 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LMS_SASS.Models;
 using LMS_SASS.Databases;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_SASS.Controllers;
 
-public class AdminController(DatabaseContext DB) : BaseController(DB) {
+public class AdminController : BaseController {
+
+    private readonly DatabaseContext _context;
+
+    public AdminController(DatabaseContext context) : base(context)
+    {
+        _context = context;
+    }
 
     [HttpGet]
     [Route("/admin/accounts")]
     public IActionResult Accounts() {
-        return View("Accounts");
+        var results = _context.Users.ToList();
+        return View( results);
+    }
+    [HttpGet("/admin/getdata")]
+    public async Task<IActionResult> GetData()
+    {
+        var results = await _context.Users.ToListAsync();
+        return new JsonResult(new { Data = results, TotalItems = results.Count });
+    }
+    [HttpPost("/admin/create")]
+    public async Task<IActionResult> Create(UserModel model)
+    {
+        model.Created = DateTime.Now;
+        _context.Users.Add(model);
+        try
+        {
+            await _context.SaveChangesAsync();
+            return Ok(new { success = true });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Ok(new { success = false });
+        }
     }
 
-	[HttpGet]
+    [HttpGet]
     [Route("/admin/courses")]
     public IActionResult Courses() {
         return View("Courses");
