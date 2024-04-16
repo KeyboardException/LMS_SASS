@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Tìm kiếm khóa học";
+}
+@model List<CourseModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="Styles/site.css" rel="stylesheet" />
+</head>
+<body>
+
+    @if (Model != null && Model.Any())
+    {
+        <h2>Khóa học phù hợp với dữ liệu tìm kiếm</h2>
+        <ul>
+            @foreach (var course in Model)
+            {
+                <li>
+                    <h3>@course.Name</h3>
+                    <p>Mã khóa học: @course.Code</p>
+                    <p>Môn học: @course.Subject</p>
+                    <p>Ngày bắt đầu: @course.StartDate.ToShortDateString()</p>
+                    <p>Ngày kết thúc: @course.EndDate.ToShortDateString()</p>
+                </li>
+            }
+        </ul>
+        <button class="back-button" onclick="goBack()">Quay lại</button>
+    }
+    else
+    {
+        <p>Không có kết quả phù hợp</p>
+        <button class="back-button" onclick="goBack()">Quay lại</button>
+    }
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

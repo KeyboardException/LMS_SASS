@@ -1,0 +1,37 @@
+﻿@model List<CourseModel>
+
+<div class="search-container">
+    <label>Tên khóa học</label>
+    <input type="text" id="searchTerm" placeholder="Nhập tên khóa học">
+    <button type="button" id="searchButton">Tìm kiếm</button>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchButton').click(function () {
+                var searchTerm = $('#searchTerm').val();
+                if (searchTerm.trim() === "") {
+                    alert("Vui lòng nhập dữ liệu tìm kiếm");
+                    return;
+                }
+                searchCourses(searchTerm);
+            });
+
+            function searchCourses(searchTerm) {
+                $.ajax({
+                    url: '/course/search',
+                    type: 'POST',
+                    data: { searchTerm: searchTerm },
+                    success: function (result) {
+                        window.location.href = '/course/searchresult?searchTerm=' + searchTerm;
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        });
+    </script>
+}

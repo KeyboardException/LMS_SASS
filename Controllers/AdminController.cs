@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMS_SASS.Controllers;
 
-public class AdminController : BaseController {
+public class AdminController : BaseController
+{
 
     private readonly DatabaseContext _context;
 
@@ -17,9 +18,10 @@ public class AdminController : BaseController {
 
     [HttpGet]
     [Route("/admin/accounts")]
-    public IActionResult Accounts() {
+    public IActionResult Accounts()
+    {
         var results = _context.Users.ToList();
-        return View( results);
+        return View(results);
     }
     [HttpGet("/admin/getdata")]
     public async Task<IActionResult> GetData()
@@ -46,7 +48,27 @@ public class AdminController : BaseController {
 
     [HttpGet]
     [Route("/admin/courses")]
-    public IActionResult Courses() {
+    public IActionResult Courses()
+    {
         return View("Courses");
     }
+    
+    // Tim kiem khoa hoc
+    [HttpPost]
+    [Route("/course/search")]
+    public IActionResult SearchCoursePost(string searchTerm)
+    {
+        return RedirectToAction("SearchResult", new { searchTerm = searchTerm });
+    }
+
+    [HttpGet]
+    [Route("/course/searchresult")]
+    public IActionResult SearchResult(string searchTerm)
+    {
+        var courses = !string.IsNullOrEmpty(searchTerm) ?
+            DB.Courses.Where(c => c.Name.Contains(searchTerm)).
+            ToList() : DB.Courses.ToList();
+        return View("ResultSearch", courses);
+    }
 }
+
