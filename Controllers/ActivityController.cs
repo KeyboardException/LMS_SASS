@@ -18,6 +18,14 @@ namespace LMS_SASS.Controllers
     {
       return View();
     }
+    
+    [HttpGet]
+    [Route("/course/{courseId:int}/activities")]
+    public IActionResult GetCourseActivities(int courseId)
+    {
+    var listActivity = DB.Activities.Where(activity => activity.CourseId == courseId).ToList();
+      return Json(listActivity);
+    }
 
     [HttpGet]
     [Route("/course/{courseId:int}/activity/meeting/create")]
