@@ -1,37 +1,55 @@
-﻿@model List<CourseModel>
-
-<div class="search-container">
-    <label>Tên khóa học</label>
-    <input type="text" id="searchTerm" placeholder="Nhập tên khóa học">
-    <button type="button" id="searchButton">Tìm kiếm</button>
-</div>
-
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#searchButton').click(function () {
-                var searchTerm = $('#searchTerm').val();
-                if (searchTerm.trim() === "") {
-                    alert("Vui lòng nhập dữ liệu tìm kiếm");
-                    return;
-                }
-                searchCourses(searchTerm);
-            });
-
-            function searchCourses(searchTerm) {
-                $.ajax({
-                    url: '/course/search',
-                    type: 'POST',
-                    data: { searchTerm: searchTerm },
-                    success: function (result) {
-                        window.location.href = '/course/searchresult?searchTerm=' + searchTerm;
-                    },
-                    error: function (error) {
-                        console.error('Error:', error);
-                    }
-                });
-            }
-        });
-    </script>
+﻿@{
+    ViewData["Title"] = "Quản lý khóa học";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Styles/site.css">
+</head>
+<body>
+
+    <div class="search-container">
+        <label for="searchTerm">Tên khóa học</label>
+        <input type="text" id="searchTerm" placeholder="Nhập tên khóa học">
+        <button type="button" id="searchButton" class="search-button">Tìm kiếm</button>
+    </div>
+
+    <div class="button-container">
+        <button type="button" id="showCoursesButton" class="show-courses-button">Danh sách khóa học</button>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('#searchButton').click(function () {
+                    var searchTerm = $('#searchTerm').val();
+                    if (searchTerm.trim() === "") {
+                        alert("Vui lòng nhập dữ liệu tìm kiếm");
+                        return;
+                    }
+                    searchCourses(searchTerm);
+                });
+
+                function searchCourses(searchTerm) {
+                    $.ajax({
+                        url: '/course/search',
+                        type: 'POST',
+                        data: { searchTerm: searchTerm },
+                        success: function (result) {
+                            window.location.href = '/course/searchresult?searchTerm=' + searchTerm;
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }
+                $('#showCoursesButton').click(function () {
+                    window.location.href = '/admin/courselist';
+                });
+            });
+        </script>
+    }
+</body>
+</html>
+

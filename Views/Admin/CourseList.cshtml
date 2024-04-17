@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Danh sách khóa học";
+}
+@model List<CourseModel>
+
+<h2>Danh sách các khóa học</h2>
+
+<link rel="stylesheet" href="Styles/site.css">
+
+<table>
+    <thead>
+        <tr>
+            <th>Mã khóa học</th>
+            <th>Môn học</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@course.Code</td>
+                <td>@course.Subject</td>
+                <td>@course.StartDate.ToShortDateString()</td>
+                <td>@course.EndDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="back-button" onclick="goBack()">Quay lại</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

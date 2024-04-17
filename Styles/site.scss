@@ -312,3 +312,57 @@ body {
 	height: 50px;
 	width:200px;
 }
+/* File: wwwroot/css/site.css */
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+.search-container {
+	margin-bottom: 20px;
+}
+
+.search-container label {
+	margin-right: 10px;
+}
+
+.button-container {
+	margin-top: 20px;
+}
+
+.search-button,
+.show-courses-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.search-button {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.show-courses-button {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.search-button:hover,
+.show-courses-button:hover {
+	background-color: #0056b3;
+}

@@ -70,5 +70,14 @@ public class AdminController : BaseController
             ToList() : DB.Courses.ToList();
         return View("ResultSearch", courses);
     }
+    //ds khoa hoc
+    [HttpGet]
+    [Route("/admin/courselist")]
+    public IActionResult ShowCourses()
+    {
+        var courses = _context.Courses.ToList();
+        return View("CourseList", courses);
+    }
+
 }
 
