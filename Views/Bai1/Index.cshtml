@@ -1,0 +1,33 @@
+@model IEnumerable<CourseModel>
+
+@{
+    ViewData["Title"] = "Trang Chủ";
+    UserModel user = ViewBag.User;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2 class="title">Courses</h2>
+
+        <span class="actions">
+        </span>
+    </div>
+
+    <div class="page-content">
+        <div class="course-grid-bai1">
+            @foreach (var item in Model) {
+                <span class="course-card-bai1">
+					<div class="name">@item.Name</div>
+
+                    <ul>
+						<li><b>Code: </b> @item.Code</li>
+						<li><b>InviteCode: </b> @item.InviteCode</li>
+						<li><b>Subject: </b> @item.Subject</li>
+						<li><b>StartDate: </b> @item.StartDate</li>
+						<li><b>EndDate: </b> @item.EndDate</li>
+					</ul>
+                </span>
+            }
+        </div>
+    </div>
+</div>

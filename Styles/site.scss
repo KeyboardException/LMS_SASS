@@ -296,3 +296,30 @@ body {
 		border-radius: 2rem;
 	}
 }
+
+.course-grid-bai1 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+
+	.course-card-bai1 {
+		padding: 1rem;
+		border: 0.1rem solid var(--bs-border-color);
+		border-radius: 1rem;
+
+		> .name {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+		}
+
+		> ul {
+			margin-bottom: 0;
+		}
+	}
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}

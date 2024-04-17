@@ -25,7 +25,7 @@ public class LoginController(DatabaseContext DB) : Controller {
 		}
 
 		if (user.Password != data.Password) {
-			ModelState.AddModelError("Password", "Password không tồn tại trong hệ thống!");
+			ModelState.AddModelError("Password", "Password không chính xác!");
 			return View("Index");
 		}
 
