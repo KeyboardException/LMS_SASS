@@ -45,6 +45,12 @@
 			</div>
 
 			<div class="col-12">
+				<label for="form-input-course-verifyKey" class="form-label">@Html.DisplayNameFor(model => model.VerifyKey)</label>
+				<input type="text" asp-for="VerifyKey" class="form-control" id="form-input-course-verifyKey" placeholder="@Html.DisplayNameFor(model => model.VerifyKey)" required>
+				<span asp-validation-for="VerifyKey"></span>
+			</div>
+
+			<div class="col-12">
 				<button type="submit" class="btn btn-primary">Tạo Khóa Học</button>
 			</div>
 		</form>

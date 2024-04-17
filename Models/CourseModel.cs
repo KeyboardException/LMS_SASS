@@ -38,4 +38,10 @@ public class CourseModel {
 	[Display(Name = "Ngày Kết Thúc")]
 	[DataType(DataType.DateTime)]
 	public required DateTime EndDate { get; set; }
+
+	[StringLength(10, MinimumLength = 10, ErrorMessage = "VerifyKey phải là 10 ký tự!")]
+	[RegularExpression(@"^(\d{1})([a-zA-Z0-9]{9})$", ErrorMessage = "VerifyKey phải bắt đầu bằng một chữ số!")]
+	[DataType(DataType.Text)]
+	[MaxLength(10)]
+	public required string VerifyKey { get; set; }
 }
